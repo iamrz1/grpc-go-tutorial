@@ -1,0 +1,29 @@
+syntax = "proto3";
+package proto;
+service HelloWorld {
+  rpc SayHello (HelloRequest) returns (HelloResponse) {}
+  rpc SayMyName (HelloRequest) returns (HelloResponse) {}
+}
+
+service RestaurantService {
+  rpc OrderFood (OrderList) returns (Servings) {}
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloResponse {
+  string message = 1;
+}
+
+
+message OrderList {
+  string foodItem1 = 1;
+  string foodItem2 = 2;
+}
+
+message Servings {
+  string foodItem1 = 1;
+  string foodItem2 = 2;
+}
