@@ -1,20 +1,20 @@
-#gRPC:
+# gRPC:
  gRPC works by using protocol buffers tThe services can be written is any supported languages, as long as they share the protocol, they cn setup communication channels between themselves.
 
-##What you need to do:
+## What you need to do:
 Since we're using golang, we need to set up `protoc` and `protoc-gen-go`.
-####Set up `protoc` : 
+#### Set up `protoc` :
 ```shell script
 $ curl -LO $PB_REL/download/v3.11.4/protoc-3.11.4-linux-x86_64.zip
 4 sudo unzip protoc-3.11.4-linux-x86_64.zip -d /usr
 ```
-####Set up `protoc-gen-go` : 
+#### Set up `protoc-gen-go` :
 
 ```shell script
 $ go get -u -v github.com/golang/protobuf/protoc-gen-go
 ```
 
-####Write a proto file:
+#### Write a proto file:
 
 You need to have a protocol file (.proto) that will be shared between client and server. We will generate language specific (in our case golang) protocol functions using this file.
 A proto file contains services and messages. Services contain the rpc definitions, the remote procedure calls you want to facilitate. The messages represent the data, that will be exchanged between server and client.
@@ -54,14 +54,14 @@ message Servings {
 
 note: package is the destination directory where you are going to generate the language specific protocol file.
 
-####Generate language specific protocol file:
+#### Generate language specific protocol file:
 ```shell script
 $ protoc --go_out=plugins=grpc:<destinatin_directory> <source.proto>
 ```
 
 Now you are ready to write gRPC servers and clients using the generated protocol file.
 
-##Writing gRPC servers:
+## Writing gRPC servers:
 Writing grPC ervers are simple, but we must register defined services in our grpc server to serve messages to client. For that, we need to define a structure that implements functions (or procedures) corresponding to a specific service defined in the protocol.
 For example, for this service defined in the protocol file:
 
@@ -103,7 +103,7 @@ func RunServer() {
 
 Now we have registered our service in gRPC server.
 
-##Writing gRPC client:
+## Writing gRPC client:
 
 First, we need to set up a connection on the appropriate server and port.
 
